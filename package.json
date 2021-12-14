@@ -1,0 +1,23 @@
+{
+  "name": "backened",
+  "version": "1.0.0",
+  "description": "The ONoteBook Backened",
+  "main": "index.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "concurrently": "^6.4.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-validator": "^6.13.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "scripts": {
+    "start": "concurrently \"npm install\" \"nodemon index.js\" "
+  },
+  "author": "Sinchan Maitra",
+  "license": "ISC"
+}
