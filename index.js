@@ -8,7 +8,7 @@ connectToMongo();
 
 // CONFIGURATION
 const app = express()
-const port = 5000
+const port = 3000
 
 // MIDDLEWARES
 app.use(express.json())
@@ -24,5 +24,5 @@ app.get("/", (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`ONotebook backend listening at https://port-${port}-onotebook-smsinchanmaitra2007760884.codeanyapp.com/`)
+    console.log(`ONotebook backend listening at https://onotebook-backened.herokuapp.com`)
 })
