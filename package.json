@@ -16,7 +16,7 @@
     "nodemon": "^2.0.15"
   },
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "npm install && nodemon index.js"
   },
   "author": "Sinchan Maitra",
   "license": "ISC"
