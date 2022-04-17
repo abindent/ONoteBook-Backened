@@ -4,7 +4,7 @@ var fetchUser = require("../middleware/fetchUser")
 const Notes = require("../models/Notes")
 const { body, validationResult } = require("express-validator")
 
-// ROUTE 1 : FETCHING NOTES AND ITS DETAILS USING GET REQUEST WITH : api/auth/user - Login Required
+// ROUTE 1 : FETCHING NOTES AND ITS DETAILS USING GET REQUEST WITH : api/notes/notes - Login Required
 router.get("/notes", fetchUser, async (req, res) => {
     try {
         const notes = await Notes.find({ user: req.user.id })
@@ -15,7 +15,18 @@ router.get("/notes", fetchUser, async (req, res) => {
 
 })
 
-// ROUTE 2 : ADDING NEW NOTES WITH POST REQUEST WITH : /api/notes/add - Login Required
+// ROUTE 1 : FETCHING A SINGLE NOTE AND ITS DETAILS USING GET REQUEST WITH : api/notes/note - Login Required
+router.get("/note/:id", fetchUser, async (req, res) => {
+    try {
+        const note = await Notes.findById(req.params.id)
+        res.json(note)
+    } catch (error) {
+        return res.status(500).send("Internal Server Error or Runtime Error")
+    }
+
+})
+
+// ROUTE 3 : ADDING NEW NOTES WITH POST REQUEST WITH : /api/notes/add - Login Required
 router.post("/add", fetchUser, [
     body('title', "Title length must be atleast 3 characters.").isLength({ min: 3 }),
     body('description', "Descriotion must be atleast 5 characters.").isLength({ min: 5 })
@@ -40,7 +51,7 @@ router.post("/add", fetchUser, [
     }
 })
 
-// ROUTE 3 : UPDATING EXISTING NOTES WITH PUT REQUEST WITH : /api/notes/update - Login Required
+// ROUTE 4 : UPDATING EXISTING NOTES WITH PUT REQUEST WITH : /api/notes/update - Login Required
 router.put("/update/:id", fetchUser, async (req, res) => {
     try {
 
@@ -71,7 +82,7 @@ router.put("/update/:id", fetchUser, async (req, res) => {
     }
 })
 
-// ROUTE 4 : DELETING EXISTING NOTES WITH DELETE REQUEST WITH : /api/notes/delete - Login Required
+// ROUTE 5 : DELETING EXISTING NOTES WITH DELETE REQUEST WITH : /api/notes/delete - Login Required
 router.delete("/delete/:id", fetchUser, async (req, res) => {
     try {
 
